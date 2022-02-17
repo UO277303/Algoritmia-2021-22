@@ -9,11 +9,13 @@ public class Vector4 {
 	public static void main(String arg[]) {
 
 		long t1 = 0, t2 = 0;
-		int repeticiones = 700_000;
+		int repeticiones = 1_000;
+		@SuppressWarnings("unused")
+		int result = 0;
 
 		System.out.println("Repeticiones: " + repeticiones);
 
-		for (int n = 10; n < 200_000_000; n *= 3) {
+		for (int n = 5_000_000; n < 2_000_000_000; n *= 3) {
 
 			v = new int[n];
 			rellena(v);
@@ -21,7 +23,8 @@ public class Vector4 {
 			t1 = System.currentTimeMillis();
 
 			for (int rep = 0; rep < repeticiones; rep++) {
-				suma(v);
+				result = suma(v);
+				// maximo(v, new int[2]);
 			}
 
 			t2 = System.currentTimeMillis() - t1;

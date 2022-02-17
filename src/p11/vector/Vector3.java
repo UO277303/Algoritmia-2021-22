@@ -9,15 +9,18 @@ public class Vector3 {
 	public static void main(String arg[]) {
 
 		long t1 = 0, t2 = 0;
+		@SuppressWarnings("unused")
+		int result = 0;
 
-		for (int n = 10; n < 200_000_000; n *= 3) {
+		for (int n = 50_000_000; n < 2_000_000_000; n += 10_000_000) {
 
 			v = new int[n];
 			rellena(v);
 
 			t1 = System.currentTimeMillis();
 
-			suma(v);
+			result = suma(v);
+			// maximo(v, new int[2]);
 
 			t2 = System.currentTimeMillis() - t1;
 
