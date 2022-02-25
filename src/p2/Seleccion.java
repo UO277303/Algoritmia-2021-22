@@ -14,11 +14,23 @@ public class Seleccion extends Vector {
 	 */
 	@Override
 	public void ordenar() {
-		// TODO: Implementación del método de ordenación
+		for (int i = 0; i < elements.length; i++) {
+			intercambiar(i, posMinimo(i, elements.length - 1));
+		}
+	}
+
+	private int posMinimo(int first, int last) {
+		int posMinimo = last;
+		for (int i = first; i < last; i++) {
+			if (elements[first] < elements[last]) {
+				posMinimo = first;
+			}
+		}
+		return posMinimo;
 	}
 
 	@Override
 	public String getNombre() {
-		return "Selección";
+		return "Selecci�n";
 	}
 }
