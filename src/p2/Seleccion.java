@@ -14,7 +14,7 @@ public class Seleccion extends Vector {
 	 */
 	@Override
 	public void ordenar() {
-		for (int i = 0; i < elements.length; i++) {
+		for (int i = 0; i < elements.length - 1; i++) {
 			intercambiar(i, posMinimo(i, elements.length - 1));
 		}
 	}
@@ -24,6 +24,8 @@ public class Seleccion extends Vector {
 		for (int i = first; i < last; i++) {
 			if (elements[first] < elements[last]) {
 				posMinimo = first;
+			} else {
+				posMinimo = last;
 			}
 		}
 		return posMinimo;

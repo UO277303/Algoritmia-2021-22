@@ -10,7 +10,13 @@ public class Burbuja extends Vector {
 	 */
 	@Override
 	public void ordenar() {
-		// TODO: Implementación del método de ordenación
+		for (int i = 0; i < elements.length - 1; i++) {
+			for (int j = elements.length - 1; j > i + 1; j--) {
+				if (elements[j - 1] > elements[j]) {
+					intercambiar(j - 1, j);
+				}
+			}
+		}
 	}
 
 	@Override

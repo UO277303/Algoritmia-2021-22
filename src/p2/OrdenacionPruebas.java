@@ -13,11 +13,11 @@ public class OrdenacionPruebas {
 //		pruebaAlgoritmoOrdenacion(new Insercion(n));
 
 		// Prueba ordenación: Seleccion
-		pruebaAlgoritmoOrdenacion(new Seleccion(n));
+//		pruebaAlgoritmoOrdenacion(new Seleccion(n));
 
-//		// Prueba ordenación: Burbuja
-//		pruebaAlgoritmoOrdenacion(new Burbuja(n));
-//
+		// Prueba ordenación: Burbuja
+		pruebaAlgoritmoOrdenacion(new Burbuja(n));
+
 //		// Prueba ordenación: RapidoFatal
 //		pruebaAlgoritmoOrdenacion(new RapidoFatal(n));
 //
