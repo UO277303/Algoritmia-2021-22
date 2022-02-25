@@ -46,6 +46,6 @@ public class RapidoFatal extends Vector {
 
 	@Override
 	public String getNombre() {
-		return "RÃ¡pido pivote inicial";
+		return "Rápido pivote inicial";
 	}
 }

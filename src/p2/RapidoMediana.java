@@ -53,7 +53,7 @@ public class RapidoMediana extends Vector {
 
 	@Override
 	public String getNombre() {
-		return "RÃ¡pido mediana a tres";
+		return "Rápido mediana a tres";
 	}
 
 }

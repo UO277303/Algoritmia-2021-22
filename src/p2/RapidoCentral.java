@@ -49,6 +49,6 @@ public class RapidoCentral extends Vector {
 
 	@Override
 	public String getNombre() {
-		return "RÃ¡pido pivote central";
+		return "Rápido pivote central";
 	}
 }
