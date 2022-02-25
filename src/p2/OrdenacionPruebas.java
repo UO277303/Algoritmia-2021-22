@@ -16,10 +16,10 @@ public class OrdenacionPruebas {
 //		pruebaAlgoritmoOrdenacion(new Seleccion(n));
 
 		// Prueba ordenación: Burbuja
-		pruebaAlgoritmoOrdenacion(new Burbuja(n));
+//		pruebaAlgoritmoOrdenacion(new Burbuja(n));
 
 //		// Prueba ordenación: RapidoFatal
-//		pruebaAlgoritmoOrdenacion(new RapidoFatal(n));
+		pruebaAlgoritmoOrdenacion(new RapidoFatal(n));
 //
 //		// Prueba ordenación: RapidoCentral
 //		pruebaAlgoritmoOrdenacion(new RapidoCentral(n));

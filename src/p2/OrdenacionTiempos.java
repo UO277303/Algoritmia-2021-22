@@ -2,14 +2,14 @@ package p2;
 
 public class OrdenacionTiempos {
 	private static int nTam = 20;
-	private static int nVeces = 10;
+	private static int nVeces = 1;
 
 	/**
 	 * Este programa sirve para probar todos los algoritmos de ordenacion
 	 */
 	public static void main(String arg[]) {
 //		String opcion = arg[0];
-		String opcion = "aleatorio";
+		String opcion = "inverso";
 
 		int[] it = new int[nTam];
 		int i = 0;
@@ -23,21 +23,21 @@ public class OrdenacionTiempos {
 		System.out.println("i= " + i);
 
 		// Medir tiempo: Insercion
-//		medirTiempos(new Insercion(n), it, opcion);
+		medirTiempos(new Insercion(n), it, opcion);
 
 		// Medir tiempo: Seleccion
-		medirTiempos(new Seleccion(n), it, opcion);
+//		medirTiempos(new Seleccion(n), it, opcion);
 
-//		// Medir tiempo: Burbuja
+		// Medir tiempo: Burbuja
 //		medirTiempos(new Burbuja(n), it, opcion);
-//
-//		// Medir tiempo: RapidoFatal
+
+		// Medir tiempo: RapidoFatal
 //		medirTiempos(new RapidoFatal(n), it, opcion);
-//
-//		// Medir tiempo: RapidoCentral
+
+		// Medir tiempo: RapidoCentral
 //		medirTiempos(new RapidoCentral(n), it, opcion);
-//
-//		// Medir tiempo: RapidoMediana
+
+		// Medir tiempo: RapidoMediana
 //		medirTiempos(new RapidoMediana(n), it, opcion);
 
 	}
