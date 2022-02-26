@@ -33,8 +33,22 @@ public class RapidoMediana extends Vector {
 	 * ni a la derecha ningun menor. Es un proceso lineal O(n).
 	 */
 	private int particion(int iz, int de) {
-		// TODO: Implementación del método de partición
-		return -1;
+
+		int cen = getMediana3(iz, de, (iz + de) / 2);
+		intercambiar(cen, iz);
+
+		int pivote = elements[iz];
+		int aux = iz;
+
+		for (int i = iz + 1; i <= de; i++) {
+			if (elements[i] <= pivote) {
+				intercambiar(aux, i);
+				aux++;
+			}
+		}
+
+		intercambiar(iz, aux);
+		return aux;
 	}
 
 	/**
@@ -42,13 +56,16 @@ public class RapidoMediana extends Vector {
 	 * complejidad estudiada en clase
 	 */
 	private void rapirec(int iz, int de) {
-		// TODO: Implementación del método de creación de la partición
+		if (de > iz) {
+			int medio = particion(iz, de);
+			rapirec(iz, medio - 1);
+			rapirec(medio + 1, de);
+		}
 	}
 
 	@Override
 	public void ordenar() {
-		// TODO: Implementación del método de ordenación
-
+		rapirec(0, elements.length - 1);
 	}
 
 	@Override

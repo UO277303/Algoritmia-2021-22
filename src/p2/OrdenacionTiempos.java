@@ -9,7 +9,7 @@ public class OrdenacionTiempos {
 	 */
 	public static void main(String arg[]) {
 //		String opcion = arg[0];
-		String opcion = "inverso";
+		String opcion = "aleatorio";
 
 		int[] it = new int[nTam];
 		int i = 0;
@@ -23,10 +23,10 @@ public class OrdenacionTiempos {
 		System.out.println("i= " + i);
 
 		// Medir tiempo: Insercion
-		medirTiempos(new Insercion(n), it, opcion);
+//		medirTiempos(new Insercion(n), it, opcion);
 
 		// Medir tiempo: Seleccion
-//		medirTiempos(new Seleccion(n), it, opcion);
+		medirTiempos(new Seleccion(n), it, opcion);
 
 		// Medir tiempo: Burbuja
 //		medirTiempos(new Burbuja(n), it, opcion);

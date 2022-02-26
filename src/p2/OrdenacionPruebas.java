@@ -18,14 +18,14 @@ public class OrdenacionPruebas {
 		// Prueba ordenación: Burbuja
 //		pruebaAlgoritmoOrdenacion(new Burbuja(n));
 
-//		// Prueba ordenación: RapidoFatal
-		pruebaAlgoritmoOrdenacion(new RapidoFatal(n));
-//
-//		// Prueba ordenación: RapidoCentral
+		// Prueba ordenación: RapidoFatal
+//		pruebaAlgoritmoOrdenacion(new RapidoFatal(n));
+
+		// Prueba ordenación: RapidoCentral
 //		pruebaAlgoritmoOrdenacion(new RapidoCentral(n));
-//
-//		// Prueba ordenación: RapidoMediana
-//		pruebaAlgoritmoOrdenacion(new RapidoMediana(n));
+
+		// Prueba ordenación: RapidoMediana
+		pruebaAlgoritmoOrdenacion(new RapidoMediana(n));
 	}
 
 	public static void pruebaAlgoritmoOrdenacion(Vector v) {

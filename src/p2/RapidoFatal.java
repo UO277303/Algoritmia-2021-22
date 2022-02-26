@@ -17,7 +17,7 @@ public class RapidoFatal extends Vector {
 	 */
 	private int particion(int iz, int de) {
 		int i, pivote;
-		pivote = this.elements[iz]; // el pivote es el primero
+		pivote = this.elements[iz];
 		i = iz;
 		for (int s = iz + 1; s <= de; s++)
 			if (this.elements[s] <= pivote) {
@@ -25,8 +25,7 @@ public class RapidoFatal extends Vector {
 				intercambiar(i, s);
 			}
 		intercambiar(iz, i);
-		// se restituye el pivote donde debe estar
-		return i; // retorna la posicion en que queda el pivote
+		return i;
 	}
 
 	private void rapirec(int iz, int de) {
@@ -38,7 +37,6 @@ public class RapidoFatal extends Vector {
 		}
 	}
 
-	// Antes se llamaba 'rapido2'
 	@Override
 	public void ordenar() {
 		rapirec(0, this.elements.length - 1);
