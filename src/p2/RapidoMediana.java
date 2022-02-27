@@ -19,12 +19,15 @@ public class RapidoMediana extends Vector {
 	 */
 	private int getMediana3(int iz, int de, int cen) {
 		// intercambiaremos los 3 elementos entre si para colocar la mediana en el medio
-		if (elements[iz] > elements[cen])
+		if (elements[iz] > elements[cen]) {
 			intercambiar(iz, cen);
-		if (elements[iz] > elements[de])
+		}
+		if (elements[iz] > elements[de]) {
 			intercambiar(iz, de);
-		if (elements[cen] > elements[de])
+		}
+		if (elements[cen] > elements[de]) {
 			intercambiar(cen, de);
+		}
 		return cen;
 	}
 
@@ -34,21 +37,20 @@ public class RapidoMediana extends Vector {
 	 */
 	private int particion(int iz, int de) {
 
-		int cen = getMediana3(iz, de, (iz + de) / 2);
-		intercambiar(cen, iz);
+		intercambiar(getMediana3(iz, de, (iz + de) / 2), iz);
 
 		int pivote = elements[iz];
-		int aux = iz;
+		int i = iz;
 
-		for (int i = iz + 1; i <= de; i++) {
-			if (elements[i] <= pivote) {
-				intercambiar(aux, i);
-				aux++;
+		for (int j = iz + 1; j <= de; j++) {
+			if (elements[j] <= pivote) {
+				i++;
+				intercambiar(i, j);
 			}
 		}
 
-		intercambiar(iz, aux);
-		return aux;
+		intercambiar(iz, i);
+		return i;
 	}
 
 	/**

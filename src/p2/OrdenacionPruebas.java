@@ -20,13 +20,13 @@ public class OrdenacionPruebas {
 	}
 
 	public static void pruebaAlgoritmoOrdenacion(Vector v) {
-		System.out.println(" \n\nPrueba ordenaciÃ³n: " + v.getNombre());
+		System.out.println(" \n\nPrueba ordenación: " + v.getNombre());
 		System.out.println("Ordenar Vector ya ordenado");
 		v.ordenDirecto();
 		System.out.println("Vector a ordenar es:");
 		v.escribe(System.out);
 		v.ordenar();
-		System.out.println("Vector despuÃ©s de ordenar");
+		System.out.println("Vector después de ordenar");
 		v.escribe(System.out);
 
 		System.out.println("Ordenar Vector inverso");
@@ -34,7 +34,7 @@ public class OrdenacionPruebas {
 		System.out.println("Vector a ordenar es:");
 		v.escribe(System.out);
 		v.ordenar();
-		System.out.println("Vector despuÃ©s de ordenar");
+		System.out.println("Vector después de ordenar");
 		v.escribe(System.out);
 
 		System.out.println("Ordenar Vector aleatorio");
@@ -42,7 +42,7 @@ public class OrdenacionPruebas {
 		System.out.println("Vector a ordenar es:");
 		v.escribe(System.out);
 		v.ordenar();
-		System.out.println("Vector despuÃ©s de ordenar");
+		System.out.println("Vector después de ordenar");
 		v.escribe(System.out);
 	}
 

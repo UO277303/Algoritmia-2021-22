@@ -6,7 +6,7 @@ public class OrdenacionTiempos {
 
 	public static void main(String arg[]) {
 //		String opcion = arg[0];
-		String opcion = "aleatorio";
+		String opcion = "ordenado";
 
 		int[] it = new int[nTam];
 		int i = 0;
@@ -21,9 +21,9 @@ public class OrdenacionTiempos {
 
 //		medirTiempos(new Insercion(n), it, opcion);
 
-		medirTiempos(new Seleccion(n), it, opcion);
+//		medirTiempos(new Seleccion(n), it, opcion);
 
-//		medirTiempos(new Burbuja(n), it, opcion);
+		medirTiempos(new Burbuja(n), it, opcion);
 
 //		medirTiempos(new RapidoFatal(n), it, opcion);
 
