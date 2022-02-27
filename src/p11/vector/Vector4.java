@@ -24,7 +24,7 @@ public class Vector4 {
 
 			for (int rep = 0; rep < repeticiones; rep++) {
 				result = suma(v);
-				// maximo(v, new int[2]);
+//				maximo(v, new int[2]);
 			}
 
 			t2 = System.currentTimeMillis() - t1;

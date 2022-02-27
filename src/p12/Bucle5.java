@@ -4,17 +4,21 @@ public class Bucle5 {
 
 	public static long bucle5(int n) {
 		long cont = 0;
-		for (int i = 1; i <= n; i++)
-			for (int j = 1; j <= n; j++)
-				for (int k = 1; k <= n; k++)
-					for (int l = 1; l <= n; l *= 2)
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				for (int k = 1; k <= n; k++) {
+					for (int l = 1; l <= n; l *= 2) {
 						cont++;
+					}
+				}
+			}
+		}
 		return cont;
 	}
 
 	public static void main(String arg[]) {
 		long t1, t2;
-		// int nVeces = Integer.parseInt(arg[0]);
+//		int nVeces = Integer.parseInt(arg[0]);
 		int nVeces = 10;
 
 		System.out.println("n\ttiempo\tcontador");

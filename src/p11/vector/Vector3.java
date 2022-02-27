@@ -20,7 +20,7 @@ public class Vector3 {
 			t1 = System.currentTimeMillis();
 
 			result = suma(v);
-			// maximo(v, new int[2]);
+//			maximo(v, new int[2]);
 
 			t2 = System.currentTimeMillis() - t1;
 

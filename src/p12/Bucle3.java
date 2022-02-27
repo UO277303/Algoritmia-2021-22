@@ -4,9 +4,11 @@ public class Bucle3 {
 
 	public static long bucle3(int n) {
 		long cont = 0;
-		for (int i = 1; i <= n; i++)
-			for (int j = 1; j <= i; j++)
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= i; j++) {
 				cont++;
+			}
+		}
 		return cont;
 
 	}
@@ -14,7 +16,7 @@ public class Bucle3 {
 	public static void main(String arg[]) {
 		long c = 0;
 		long t1, t2;
-		// int nVeces = Integer.parseInt(arg[0]);
+//		int nVeces = Integer.parseInt(arg[0]);
 		int nVeces = 1_000;
 
 		for (int n = 32768; n <= 100_000; n *= 2) {
@@ -28,7 +30,7 @@ public class Bucle3 {
 
 			System.out.println(n + "\t" + (t2 - t1) + "\t" + c);
 
-		} // for
+		}
+	}
 
-	} // main
-} // class
+}

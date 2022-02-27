@@ -2,29 +2,20 @@ package p2;
 
 public class OrdenacionPruebas {
 
-	/**
-	 * Este programa sirve para probar todos los algoritmos de ordenacion
-	 */
 	public static void main(String arg[]) {
-//		int n = Integer.parseInt(arg[0]); // tamaño del problema
+//		int n = Integer.parseInt(arg[0]);
 		int n = 9;
 
-		// Prueba ordenación: Insercion
 //		pruebaAlgoritmoOrdenacion(new Insercion(n));
 
-		// Prueba ordenación: Seleccion
 //		pruebaAlgoritmoOrdenacion(new Seleccion(n));
 
-		// Prueba ordenación: Burbuja
 //		pruebaAlgoritmoOrdenacion(new Burbuja(n));
 
-		// Prueba ordenación: RapidoFatal
 //		pruebaAlgoritmoOrdenacion(new RapidoFatal(n));
 
-		// Prueba ordenación: RapidoCentral
 //		pruebaAlgoritmoOrdenacion(new RapidoCentral(n));
 
-		// Prueba ordenación: RapidoMediana
 		pruebaAlgoritmoOrdenacion(new RapidoMediana(n));
 	}
 

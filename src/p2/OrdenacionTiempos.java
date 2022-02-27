@@ -4,9 +4,6 @@ public class OrdenacionTiempos {
 	private static int nTam = 20;
 	private static int nVeces = 1;
 
-	/**
-	 * Este programa sirve para probar todos los algoritmos de ordenacion
-	 */
 	public static void main(String arg[]) {
 //		String opcion = arg[0];
 		String opcion = "aleatorio";
@@ -22,22 +19,16 @@ public class OrdenacionTiempos {
 		int n = it[0];
 		System.out.println("i= " + i);
 
-		// Medir tiempo: Insercion
 //		medirTiempos(new Insercion(n), it, opcion);
 
-		// Medir tiempo: Seleccion
 		medirTiempos(new Seleccion(n), it, opcion);
 
-		// Medir tiempo: Burbuja
 //		medirTiempos(new Burbuja(n), it, opcion);
 
-		// Medir tiempo: RapidoFatal
 //		medirTiempos(new RapidoFatal(n), it, opcion);
 
-		// Medir tiempo: RapidoCentral
 //		medirTiempos(new RapidoCentral(n), it, opcion);
 
-		// Medir tiempo: RapidoMediana
 //		medirTiempos(new RapidoMediana(n), it, opcion);
 
 	}
@@ -49,12 +40,13 @@ public class OrdenacionTiempos {
 		System.out.println("n   \tTiempo");
 		for (int n : iteraciones) {
 			v.inicializa(n);
-			if (opcion.compareTo("ordenado") == 0)
+			if (opcion.compareTo("ordenado") == 0) {
 				v.ordenDirecto();
-			else if (opcion.compareTo("inverso") == 0)
+			} else if (opcion.compareTo("inverso") == 0) {
 				v.ordenInverso();
-			else
+			} else {
 				v.ordenAleatorio();
+			}
 
 			t1 = System.currentTimeMillis();
 			for (int repeticiones = 1; repeticiones <= nVeces; repeticiones++) {

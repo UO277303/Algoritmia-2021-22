@@ -4,15 +4,17 @@ public class Bucle1 {
 
 	public static long bucle1(int n) {
 		long cont = 0;
-		for (int i = 1; i <= n; i++)
-			for (int j = 1; j <= n; j *= 2)
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j *= 2) {
 				cont++;
+			}
+		}
 		return cont;
 	}
 
 	public static void main(String arg[]) {
 		long t1, t2;
-		// int nVeces = Integer.parseInt(arg[0]);
+//		int nVeces = Integer.parseInt(arg[0]);
 		int nVeces = 40_000;
 
 		System.out.println("n\ttiempo\tcontador");
@@ -28,7 +30,7 @@ public class Bucle1 {
 
 			System.out.println(n + "\t" + (t2 - t1) + "\t" + c);
 
-		} // for
+		}
+	}
 
-	} // main
-} // class
+}
