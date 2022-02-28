@@ -6,7 +6,7 @@ public class OrdenacionTiempos {
 
 	public static void main(String arg[]) {
 //		String opcion = arg[0];
-		String opcion = "ordenado";
+		String opcion = "inverso";
 
 		int[] it = new int[nTam];
 		int i = 0;
@@ -23,13 +23,13 @@ public class OrdenacionTiempos {
 
 //		medirTiempos(new Seleccion(n), it, opcion);
 
-		medirTiempos(new Burbuja(n), it, opcion);
+//		medirTiempos(new Burbuja(n), it, opcion);
 
 //		medirTiempos(new RapidoFatal(n), it, opcion);
 
 //		medirTiempos(new RapidoCentral(n), it, opcion);
 
-//		medirTiempos(new RapidoMediana(n), it, opcion);
+		medirTiempos(new RapidoMediana(n), it, opcion);
 
 	}
 
