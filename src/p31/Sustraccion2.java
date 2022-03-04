@@ -9,10 +9,10 @@ public class Sustraccion2 {
 			cont++;
 		else {
 			for (int i = 0; i < n; i++)
-				cont++; // O(n)
+				cont++;
 			rec2(n - 1);
 			for (int i = 0; i < n; i++)
-				cont++; // O(n)
+				cont++;
 		}
 		return true;
 	}
@@ -20,8 +20,11 @@ public class Sustraccion2 {
 	@SuppressWarnings("unused")
 	public static void main(String arg[]) {
 		long t1, t2, cont;
-		int nVeces = Integer.parseInt(arg[0]);
+//		int nVeces = Integer.parseInt(arg[0]);
+		int nVeces = 10_000;
 		boolean b = true;
+
+		System.out.println("n\tt\trepeticiones");
 		for (int n = 1; n <= 100_000; n *= 2) {
 			t1 = System.currentTimeMillis();
 
@@ -32,7 +35,8 @@ public class Sustraccion2 {
 
 			t2 = System.currentTimeMillis();
 
-			System.out.println(b + " n=" + n + "**TIEMPO=" + (t2 - t1) + "**nVeces=" + nVeces);
-		} // for
-	} // main
-} // class
+			System.out.println(n + "\t" + (t2 - t1) + "\t" + nVeces);
+		}
+	}
+
+}

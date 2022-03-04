@@ -8,7 +8,7 @@ public class Division3 {
 		if (n <= 0)
 			cont++;
 		else {
-			cont++; // O(1)
+			cont++;
 			rec3(n / 2);
 			rec3(n / 2);
 		}
@@ -18,9 +18,11 @@ public class Division3 {
 	@SuppressWarnings("unused")
 	public static void main(String arg[]) {
 		long t1, t2, cont;
-		int nVeces = Integer.parseInt(arg[0]);
+//		int nVeces = Integer.parseInt(arg[0]);
+		int nVeces = 1_000_000;
 		boolean b = true;
 
+		System.out.println("n\tt\trepeticiones");
 		for (int n = 1; n <= 10_000_000; n *= 2) {
 			t1 = System.currentTimeMillis();
 
@@ -31,9 +33,9 @@ public class Division3 {
 
 			t2 = System.currentTimeMillis();
 
-			System.out.println(b + " n=" + n + "**TIEMPO=" + (t2 - t1) + "**nVeces=" + nVeces);
+			System.out.println(n + "\t" + (t2 - t1) + "\t" + nVeces);
 
-		} // for
+		}
+	}
 
-	} // main
-} // class
+}

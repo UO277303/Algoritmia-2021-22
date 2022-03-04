@@ -10,11 +10,17 @@ public class VectorSum2 {
 	static int[] v;
 
 	public static void main(String arg[]) {
-		int nTimes = Integer.parseInt(arg[1]);
-		int option = Integer.parseInt(arg[0]);
+//		int nTimes = Integer.parseInt(arg[1]);
+//		int option = Integer.parseInt(arg[0]);
+		int nTimes = 2_500_000;
+		int option = 1;
+
+		@SuppressWarnings("unused")
 		int sum = 0;
 		long t1, t2;
 
+		System.out.println("option = " + option);
+		System.out.println("n\tt\trepeticiones");
 		for (int n = 3; n <= 100000; n *= 2) { // n is incremented by *2
 			v = new int[n];
 			VectorSum1.fillIn(v);
@@ -26,10 +32,8 @@ public class VectorSum2 {
 					sum = VectorSum1.sum1(v);
 				t2 = System.currentTimeMillis();
 
-				System.out.println(
-						"SIZE = " + n + "**" + "TIME = " + (t2 - t1) + "**" + " nTimes = " + nTimes + " SUM = " + sum);
-			} // if
-			else if (option == 2) { // sum2
+				System.out.println(n + "\t" + (t2 - t1) + "\t" + nTimes);
+			} else if (option == 2) { // sum2
 				t1 = System.currentTimeMillis();
 
 				for (int repetition = 1; repetition <= nTimes; repetition++)
@@ -37,10 +41,8 @@ public class VectorSum2 {
 
 				t2 = System.currentTimeMillis();
 
-				System.out.println(
-						"SIZE = " + n + "**" + "TIME = " + (t2 - t1) + "**" + " nTimes = " + nTimes + " SUM = " + sum);
-			} // if
-			else if (option == 3) { // sum3
+				System.out.println(n + "\t" + (t2 - t1) + "\t" + nTimes);
+			} else if (option == 3) { // sum3
 				t1 = System.currentTimeMillis();
 
 				for (int repetition = 1; repetition <= nTimes; repetition++)
@@ -48,12 +50,11 @@ public class VectorSum2 {
 
 				t2 = System.currentTimeMillis();
 
-				System.out.println(
-						"SIZE = " + n + "**" + "TIME = " + (t2 - t1) + "**" + " nTimes = " + nTimes + " SUM = " + sum);
-			} // if
-			else
+				System.out.println(n + "\t" + (t2 - t1) + "\t" + nTimes);
+			} else {
 				System.out.println("INCORRECT OPTION");
-		} // for of size n
-	} // main
+			}
+		}
+	}
 
 }

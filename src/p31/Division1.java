@@ -9,7 +9,7 @@ public class Division1 {
 			cont++;
 		else {
 			for (int i = 1; i < n; i++)
-				cont++; // O(n)
+				cont++;
 			rec1(n / 3);
 		}
 		return true;
@@ -18,9 +18,11 @@ public class Division1 {
 	@SuppressWarnings("unused")
 	public static void main(String arg[]) {
 		long t1, t2, cont;
-		int nVeces = Integer.parseInt(arg[0]);
+//		int nVeces = Integer.parseInt(arg[0]);
+		int nVeces = 1_500_000;
 		boolean b = true;
 
+		System.out.println("n\tt\trepeticiones");
 		for (int n = 1; n <= 10_000_000; n *= 2) {
 			t1 = System.currentTimeMillis();
 
@@ -31,7 +33,8 @@ public class Division1 {
 
 			t2 = System.currentTimeMillis();
 
-			System.out.println(b + " n=" + n + "**TIEMPO=" + (t2 - t1) + "**nVeces=" + nVeces);
-		} // for
-	} // main
-} // class
+			System.out.println(n + "\t" + (t2 - t1) + "\t" + nVeces);
+		}
+	}
+
+}
