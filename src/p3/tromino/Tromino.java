@@ -109,16 +109,10 @@ public class Tromino {
 	public void imprimirTablero() {
 		System.out.println("--- TROMINÓ ---");
 		for (int i = 0; i < tablero[0].length; i++) {
-			System.out.print("__");
-			if (i == tablero[0].length - 1) {
-				System.out.print("\n");
-			}
-		}
-		for (int i = 0; i < tablero[0].length; i++) {
 			for (int j = 0; j < tablero[0].length; j++) {
-				System.out.print(" | " + tablero[i][j]);
+				System.out.print("\t|\t" + tablero[i][j]);
 				if (j == tablero[0].length - 1) {
-					System.out.print(" | \n");
+					System.out.print("\t|\n");
 				}
 			}
 		}
