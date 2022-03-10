@@ -1,4 +1,4 @@
-package p31;
+package p3.modelosRecursivos;
 
 import java.util.Random;
 

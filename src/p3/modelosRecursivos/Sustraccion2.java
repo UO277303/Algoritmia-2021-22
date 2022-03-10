@@ -1,15 +1,18 @@
-package p31;
+package p3.modelosRecursivos;
 
-public class Sustraccion1 {
+public class Sustraccion2 {
 
 	static long cont;
 
-	public static boolean rec1(int n) {
+	public static boolean rec2(int n) {
 		if (n <= 0)
 			cont++;
 		else {
-			cont++;
-			rec1(n - 1);
+			for (int i = 0; i < n; i++)
+				cont++;
+			rec2(n - 1);
+			for (int i = 0; i < n; i++)
+				cont++;
 		}
 		return true;
 	}
@@ -18,7 +21,7 @@ public class Sustraccion1 {
 	public static void main(String arg[]) {
 		long t1, t2, cont;
 //		int nVeces = Integer.parseInt(arg[0]);
-		int nVeces = 5_000_000;
+		int nVeces = 10_000;
 		boolean b = true;
 
 		System.out.println("n\tt\trepeticiones");
@@ -27,7 +30,7 @@ public class Sustraccion1 {
 
 			for (int repeticiones = 1; repeticiones <= nVeces; repeticiones++) {
 				cont = 0;
-				b = rec1(n);
+				b = rec2(n);
 			}
 
 			t2 = System.currentTimeMillis();
