@@ -11,8 +11,8 @@ public class Fibonacci2 {
 	public static void main(String[] arg) {
 //		int option = Integer.parseInt(arg[0]);
 //		int nTimes = Integer.parseInt(arg[1]);
-		int option = 1;
-		int nTimes = 2_500_000;
+		int option = 4;
+		int nTimes = 1;
 
 		long t1, t2;
 		@SuppressWarnings("unused")

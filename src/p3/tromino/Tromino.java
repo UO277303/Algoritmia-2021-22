@@ -5,9 +5,7 @@ public class Tromino {
 	int[][] tablero;
 	int count = 0;
 
-	boolean imprimir;
-
-	public void crearTablero(int n, int xVacio, int yVacio, boolean imprimir) {
+	public void crearTablero(int n, int xVacio, int yVacio) {
 		if (n > 0 && potenciaDe2(n) && xVacio < n && yVacio < n) {
 			tablero = new int[n][n];
 			tablero[xVacio][yVacio] = -1;
@@ -35,10 +33,6 @@ public class Tromino {
 				tablero[c[0] + 1][c[1]] = count;
 				tablero[c[0] + 1][c[1] + 1] = count;
 
-				if (imprimir) {
-					imprimirTablero();
-				}
-
 				tromino(x, y, n / 2, orig_x, orig_y);
 				tromino(c[0], c[1] + 1, n / 2, orig_x, orig_y + n / 2);
 				tromino(c[0] + 1, c[1], n / 2, orig_x + n / 2, orig_y);
@@ -48,10 +42,6 @@ public class Tromino {
 				tablero[c[0]][c[1]] = count;
 				tablero[c[0] + 1][c[1]] = count;
 				tablero[c[0] + 1][c[1] + 1] = count;
-
-				if (imprimir) {
-					imprimirTablero();
-				}
 
 				tromino(c[0], c[1], n / 2, orig_x, orig_y);
 				tromino(c[0] + 1, c[1], n / 2, orig_x, orig_y + n / 2);
@@ -63,10 +53,6 @@ public class Tromino {
 				tablero[c[0]][c[1] + 1] = count;
 				tablero[c[0] + 1][c[1] + 1] = count;
 
-				if (imprimir) {
-					imprimirTablero();
-				}
-
 				tromino(c[0], c[1], n / 2, orig_x, orig_y);
 				tromino(x, y, n / 2, orig_x, orig_y + n / 2);
 				tromino(c[0], c[1] + 1, n / 2, orig_x + n / 2, orig_y);
@@ -76,10 +62,6 @@ public class Tromino {
 				tablero[c[0]][c[1]] = count;
 				tablero[c[0] + 1][c[1]] = count;
 				tablero[c[0]][c[1] + 1] = count;
-
-				if (imprimir) {
-					imprimirTablero();
-				}
 
 				tromino(c[0], c[1], n / 2, orig_x, orig_y);
 				tromino(c[0], c[1] + 1, n / 2, orig_x, orig_y + n / 2);
@@ -109,10 +91,6 @@ public class Tromino {
 				tablero[orig_x][orig_y] = count;
 				tablero[orig_x + 1][orig_y] = count;
 				tablero[orig_x][orig_y + 1] = count;
-			}
-
-			if (imprimir) {
-				imprimirTablero();
 			}
 		}
 	}

@@ -10,7 +10,8 @@ public class VectorSum1 {
 
 	// MAIN METHOD TO VERIFY PROPER OPERATION
 	public static void main(String arg[]) {
-		int n = Integer.parseInt(arg[0]);
+//		int n = Integer.parseInt(arg[0]);
+		int n = 100;
 
 		v = new int[n];
 		fillIn(v);
