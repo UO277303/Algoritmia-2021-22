@@ -121,7 +121,7 @@ public class Tromino {
 
 	///////////////////////
 
-	public void tromino_anterior(int[][] st, int n, int xOc, int yOc, int xEm, int yEm) {
+	public void tromino_2(int[][] st, int n, int xOc, int yOc, int xEm, int yEm) {
 		// Guardo el centro del tablero (esquina inferior derecha del primer cuadrante)
 		int[] centro = { xEm + n / 2 - 1, yEm + n / 2 - 1 };
 
@@ -190,7 +190,7 @@ public class Tromino {
 		if (n > 0 && potenciaDe2(n) && xVacio < n && yVacio < n) {
 			tablero = new int[n][n];
 			tablero[xVacio][yVacio] = -1;
-			tromino_anterior(tablero, n, xVacio, yVacio, 0, 0);
+			tromino_2(tablero, n, xVacio, yVacio, 0, 0);
 		} else {
 			throw new IllegalArgumentException("Error en los parámetros.");
 		}
