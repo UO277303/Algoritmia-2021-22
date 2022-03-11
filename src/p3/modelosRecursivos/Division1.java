@@ -19,7 +19,7 @@ public class Division1 {
 	public static void main(String arg[]) {
 		long t1, t2, cont;
 //		int nVeces = Integer.parseInt(arg[0]);
-		int nVeces = 1_500_000;
+		int nVeces = 1_000;
 		boolean b = true;
 
 		System.out.println("n\tt\trepeticiones");
