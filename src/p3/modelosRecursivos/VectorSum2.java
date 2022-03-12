@@ -12,8 +12,8 @@ public class VectorSum2 {
 	public static void main(String arg[]) {
 //		int nTimes = Integer.parseInt(arg[1]);
 //		int option = Integer.parseInt(arg[0]);
-		int nTimes = 2_500_000;
-		int option = 1;
+		int nTimes = 10_000;
+		int option = 3;
 
 		@SuppressWarnings("unused")
 		int sum = 0;
