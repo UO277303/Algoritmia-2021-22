@@ -16,6 +16,35 @@ public class ColoracionMapa {
 		listaColores = LeerFicheros.readColores(ficheroColores);
 	}
 
+	public void coloracionMapa() {
+		Set<String> paisesNombres = paises.keySet();
+		for (String p : paisesNombres) {
+			for (String c : listaColores) {
+				// ni idea
+			}
+		}
+	}
+
+	private void añadirColor(String pais, String color) {
+		if (colores.containsKey(pais)) {
+			colores.put(pais, color);
+		} else {
+			colores.putIfAbsent(pais, color);
+		}
+		if (!coloresUsados.contains(color)) {
+			coloresUsados.add(color);
+		}
+	}
+
+	private String getColorDePais(String pais) {
+		if (!colores.containsKey(pais)) {
+			return "";
+		}
+		return colores.get(pais);
+	}
+
+	// Métodos para imprimir los datos por pantalla
+
 	public void imprimirColoresUsados() {
 		System.out.println("Se han utilizado " + coloresUsados.size() + " colores:");
 		for (String c : coloresUsados) {
