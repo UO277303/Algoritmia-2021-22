@@ -22,20 +22,20 @@ public class LeerFicheros {
 
 			while (line != null) {
 				String[] dataLine = line.trim().split(":");
-				if (!paises.containsKey(dataLine[0])) {
+				if (!paises.containsKey(dataLine[0].trim())) {
 					ArrayList<String> f = new ArrayList<String>();
-					paises.putIfAbsent(dataLine[0], f);
+					paises.putIfAbsent(dataLine[0].trim(), f);
 				}
 
-				String[] fronteras = dataLine[1].strip().split(",");
-				if (!fronteras[0].equals("NO")) {
+				String[] fronteras = dataLine[1].split(",");
+				if (!fronteras[0].trim().equals("NO")) {
 					for (String p : fronteras) {
-						if (!paises.containsKey(p)) {
+						if (!paises.containsKey(p.trim())) {
 							ArrayList<String> f = new ArrayList<String>();
-							paises.putIfAbsent(p, f);
-							paises.get(dataLine[0]).add(p);
+							paises.putIfAbsent(p.trim(), f);
+							paises.get(dataLine[0]).add(p.trim());
 						} else {
-							paises.get(dataLine[0]).add(p);
+							paises.get(dataLine[0]).add(p.trim());
 						}
 					}
 				}
