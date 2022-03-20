@@ -25,12 +25,23 @@ public class ColoracionMapa {
 		añadirColor(paisesNombres[0], listaColores.get(indexColor));
 
 		for (int i = 1; i < paises.size(); i++) {
+			ArrayList<String> fronteras = new ArrayList<String>();
 			for (String front : paises.get(paisesNombres[i])) {
-				while (getColorDePais(front).equals(getColorDePais(paisesNombres[i]))) {
-					indexColor++;
+				if (colores.containsKey(front)) {
+					fronteras.add(colores.get(front));
 				}
-				añadirColor(paisesNombres[i], listaColores.get(indexColor));
-				indexColor = 0;
+			}
+			for (String c : listaColores) {
+				boolean distinct = true;
+				for (String cF : fronteras) {
+					if (c.equals(cF)) {
+						distinct = false;
+					}
+				}
+				if (distinct) {
+					añadirColor(paisesNombres[i], c);
+					break;
+				}
 			}
 		}
 	}
