@@ -14,13 +14,23 @@ public class ColoracionMapa {
 	public ColoracionMapa(String ficheroPaises, String ficheroColores) {
 		paises = LeerFicheros.readPaises(ficheroPaises);
 		listaColores = LeerFicheros.readColores(ficheroColores);
+		colores = new HashMap<String, String>();
+		coloresUsados = new ArrayList<String>();
 	}
 
 	public void coloracionMapa() {
-		Set<String> paisesNombres = paises.keySet();
-		for (String p : paisesNombres) {
-			for (String c : listaColores) {
-				// ni idea
+		String[] paisesNombres = paises.keySet().toArray(new String[paises.size()]);
+
+		int indexColor = 0;
+		añadirColor(paisesNombres[0], listaColores.get(indexColor));
+
+		for (int i = 1; i < paises.size(); i++) {
+			for (String front : paises.get(paisesNombres[i])) {
+				while (getColorDePais(front).equals(getColorDePais(paisesNombres[i]))) {
+					indexColor++;
+				}
+				añadirColor(paisesNombres[i], listaColores.get(indexColor));
+				indexColor = 0;
 			}
 		}
 	}
@@ -31,6 +41,7 @@ public class ColoracionMapa {
 		} else {
 			colores.putIfAbsent(pais, color);
 		}
+
 		if (!coloresUsados.contains(color)) {
 			coloresUsados.add(color);
 		}

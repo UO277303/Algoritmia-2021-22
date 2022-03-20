@@ -6,7 +6,7 @@ public class ColoracionMapaTiempos {
 		ColoracionMapa cm = new ColoracionMapa("fronteras.txt", "colores.txt");
 
 		System.out.println("PAISES:");
-		cm.imprimirFronteras();
+		cm.imprimirPaisesYColores();
 	}
 
 }
