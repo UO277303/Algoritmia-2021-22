@@ -9,6 +9,9 @@ public class ColoracionMapaTiempos {
 
 		System.out.println("PAISES:");
 		cm.imprimirPaisesYColores();
+
+		System.out.println("\nCOLORES:");
+		cm.imprimirColoresUsados();
 	}
 
 }

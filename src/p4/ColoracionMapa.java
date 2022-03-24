@@ -21,48 +21,35 @@ public class ColoracionMapa {
 	public void coloracionMapa() {
 		String[] paisesNombres = paises.keySet().toArray(new String[paises.size()]);
 
-		int indexColor = 0;
-		añadirColor(paisesNombres[0], listaColores.get(indexColor));
-
+		añadirColor(paisesNombres[0], listaColores.get(0));
 		for (int i = 1; i < paises.size(); i++) {
-			ArrayList<String> fronteras = new ArrayList<String>();
-			for (String front : paises.get(paisesNombres[i])) {
-				if (colores.containsKey(front)) {
-					fronteras.add(colores.get(front));
-				}
-			}
-			for (String c : listaColores) {
-				boolean distinct = true;
-				for (String cF : fronteras) {
-					if (c.equals(cF)) {
-						distinct = false;
-					}
-				}
-				if (distinct) {
-					añadirColor(paisesNombres[i], c);
-					break;
-				}
-			}
+			añadirColor(paisesNombres[i], getColorPosible(paisesNombres[i]));
 		}
 	}
 
 	private void añadirColor(String pais, String color) {
-		if (colores.containsKey(pais)) {
-			colores.put(pais, color);
-		} else {
-			colores.putIfAbsent(pais, color);
-		}
-
+		colores.put(pais, color);
 		if (!coloresUsados.contains(color)) {
 			coloresUsados.add(color);
 		}
 	}
 
-	private String getColorDePais(String pais) {
-		if (!colores.containsKey(pais)) {
-			return "";
+	private String getColorPosible(String pais) {
+		ArrayList<String> coloresFronteras = new ArrayList<String>();
+		for (int i = 0; i < paises.get(pais).size(); i++) {
+			if (colores.get(paises.get(pais).get(i)) != null) {
+				if (!coloresFronteras.contains(colores.get(paises.get(pais).get(i)))) {
+					coloresFronteras.add(colores.get(paises.get(pais).get(i)));
+				}
+			}
 		}
-		return colores.get(pais);
+
+		for (int i = 0; i < listaColores.size(); i++) {
+			if (!coloresFronteras.contains(listaColores.get(i))) {
+				return listaColores.get(i);
+			}
+		}
+		return "";
 	}
 
 	// Métodos para imprimir los datos por pantalla
@@ -78,7 +65,7 @@ public class ColoracionMapa {
 		for (String p : paises.keySet()) {
 			System.out.println(p + ": (" + colores.get(p) + ")");
 			for (String f : paises.get(p)) {
-				System.out.println("\t" + f + " (" + colores.get(p) + ")");
+				System.out.println("\t" + f + " (" + colores.get(f) + ")");
 			}
 		}
 	}
