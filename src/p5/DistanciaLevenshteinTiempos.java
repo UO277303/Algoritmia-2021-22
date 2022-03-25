@@ -4,14 +4,16 @@ public class DistanciaLevenshteinTiempos {
 
 	public static void main(String[] args) {
 //		DistanciaLevenshtein d = new DistanciaLevenshtein("ABRACADABRA", "BARCAZAS");
+//		DistanciaLevenshtein d = new DistanciaLevenshtein("ELEFANTE", "RELEVANTE");
+//		DistanciaLevenshtein d = new DistanciaLevenshtein("ABRACADABRA", "RELEVANTE");
 //		d.calcularDistancia();
 //		d.imprimirMatriz();
 
 		long t1, t2;
-		int rep = 100_000;
+		int rep = 10;
 
-		System.out.println("n\tt\tcad1\tcad2\tresult");
-		for (int n = 5; n < 100_000; n *= 2) {
+		System.out.println("n\tt\trep\tresult");
+		for (int n = 1; n < 1_000_000; n *= 2) {
 			String cad1 = cadenaAleatoria(n);
 			String cad2 = cadenaAleatoria(n);
 			DistanciaLevenshtein d = new DistanciaLevenshtein(cad1, cad2);
@@ -25,18 +27,15 @@ public class DistanciaLevenshteinTiempos {
 
 			t2 = System.currentTimeMillis() - t1;
 
-//			System.out.println(n + "\t" + t2 + "\t" + result);
-			System.out.println(cad1);
-			System.out.println(cad2);
+			System.out.println(n + "\t" + t2 + "\t" + rep + "\t" + result);
 		}
 	}
 
 	static String cadenaAleatoria(int tamaño) {
-//		char[] cadena = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < tamaño; i++) {
-//			sb.append(cadena[(int) (Math.random() * cadena.length)]);
-			sb.append((char) ((int) (Math.random() * 91 - 65) + 65));
+			sb.append(chars.charAt((int) (Math.random() * chars.length())));
 		}
 		return sb.toString();
 	}
