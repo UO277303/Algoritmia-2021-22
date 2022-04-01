@@ -127,7 +127,44 @@ public class PromediadorImagen {
 	 * @n_tries numero de intentos aleatorios
 	 */
 	public void splitSubsetsGreedy(int n_tries) {
-		// TODO
+		int count = n_tries;
+		double zncc = -1;
+
+		while (count > 0) {
+
+			this.half1_img = new Imagen(width, height);
+			this.half2_img = new Imagen(width, height);
+
+			int[] v = new int[dataset.length];
+			for (int i = 0; i < v.length; i++) {
+				v[i] = (int) Math.random() * 2;
+			}
+
+			this.sol = v;
+
+			for (int i = 0; i < v.length; i++) {
+				if (v[i] == 1) {
+					this.half1_img.addSignal(dataset[i]);
+				} else if (v[i] == 2) {
+					this.half2_img.addSignal(dataset[i]);
+				}
+			}
+
+			double new_zncc = zncc();
+
+			if (new_zncc > zncc) {
+				zncc = new_zncc;
+				this.bestSol = sol;
+			}
+
+			this.half1_img.addSignal(this.half2_img);
+			this.avg_img = new Imagen(width, height);
+			this.avg_img = half1_img;
+
+			count--;
+			this.counter++;
+		}
+
 	}
 
 	/**
