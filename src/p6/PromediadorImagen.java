@@ -136,6 +136,9 @@ public class PromediadorImagen {
 
 		while (count > 0) {
 
+			Imagen img1 = new Imagen(width, height);
+			Imagen img2 = new Imagen(width, height);
+
 			int[] v = new int[dataset.length];
 			for (int i = 0; i < v.length; i++) {
 				v[i] = (int) (Math.random() * 3);
@@ -145,9 +148,9 @@ public class PromediadorImagen {
 
 			for (int i = 0; i < v.length; i++) {
 				if (v[i] == 1) {
-					this.half1_img.addSignal(dataset[i]);
+					img1.addSignal(dataset[i]);
 				} else if (v[i] == 2) {
-					this.half2_img.addSignal(dataset[i]);
+					img2.addSignal(dataset[i]);
 				}
 			}
 
@@ -155,18 +158,25 @@ public class PromediadorImagen {
 
 			if (new_zncc > zncc) {
 				zncc = new_zncc;
-				this.bestSol = sol;
+				this.bestSol = sol.clone();
+				this.half1_img = img1.copy();
+				this.half2_img = img2.copy();
 			}
-
-			this.half1_img.addSignal(this.half2_img);
-			Imagen aux = half1_img;
-			aux.addSignal(half2_img);
-			this.avg_img = aux;
 
 			count--;
 			this.counter++;
 		}
 
+//		for (int i = 0; i < bestSol.length; i++) {
+//			if (bestSol[i] == 1) {
+//				this.half1_img.addSignal(dataset[i]);
+//			} else if (bestSol[i] == 2) {
+//				this.half2_img.addSignal(dataset[i]);
+//			}
+//		}
+//
+//		this.avg_img.addSignal(this.half1_img);
+//		this.avg_img.addSignal(this.half2_img);
 	}
 
 	/**
@@ -205,7 +215,7 @@ public class PromediadorImagen {
 	 * antes de segunda sol[nivel] = 1, igual con 2
 	 */
 	private void backtrackingRec(int level) {
-		if (level == sol.length - 1) {
+		if (level == sol.length) {
 			for (int i = 0; i < sol.length; i++) {
 				if (sol[i] == 1) {
 					this.half1_img.addSignal(dataset[i]);
@@ -221,10 +231,8 @@ public class PromediadorImagen {
 				this.bestSol = sol;
 			}
 
-			this.half1_img.addSignal(this.half2_img);
-			Imagen aux = half1_img;
-			aux.addSignal(half2_img);
-			this.avg_img = aux;
+			this.avg_img.addSignal(half1_img);
+			this.avg_img.addSignal(half2_img);
 
 			this.counter++;
 
