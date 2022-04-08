@@ -130,14 +130,15 @@ public class PromediadorImagen {
 		int count = n_tries;
 		double zncc = -1;
 
-		while (count > 0) {
+		this.half1_img = new Imagen(width, height);
+		this.half2_img = new Imagen(width, height);
+		this.avg_img = new Imagen(width, height);
 
-			this.half1_img = new Imagen(width, height);
-			this.half2_img = new Imagen(width, height);
+		while (count > 0) {
 
 			int[] v = new int[dataset.length];
 			for (int i = 0; i < v.length; i++) {
-				v[i] = (int) Math.random() * 2;
+				v[i] = (int) (Math.random() * 3);
 			}
 
 			this.sol = v;
@@ -158,8 +159,9 @@ public class PromediadorImagen {
 			}
 
 			this.half1_img.addSignal(this.half2_img);
-			this.avg_img = new Imagen(width, height);
-			this.avg_img = half1_img;
+			Imagen aux = half1_img;
+			aux.addSignal(half2_img);
+			this.avg_img = aux;
 
 			count--;
 			this.counter++;
@@ -173,6 +175,11 @@ public class PromediadorImagen {
 	 * @max_unbalancing: (condición de poda) determina la diferencia máxima en el
 	 *                   número de imágenes entre los dos subconjuntos
 	 */
+	/*
+	 * El array sol debe tener el mismo numero de 0 que de 1 (+- max_unbalancing) Si
+	 * len=6 y hay tres 1 metidos, no permitir meter 1 (solo 2) Crear metodos para
+	 * contar numero de unos o doses
+	 */
 	public void splitSubsetsBacktracking(int max_unbalancing) {
 		// TODO
 	}
@@ -181,7 +188,55 @@ public class PromediadorImagen {
 	 * Algoritmo backtracking sin condición de balanceo.
 	 */
 	public void splitSubsetsBacktracking() {
-		// TODO
+
+		this.half1_img = new Imagen(width, height);
+		this.half2_img = new Imagen(width, height);
+		this.avg_img = new Imagen(width, height);
+
+		backtrackingRec(0);
+	}
+
+	/*
+	 * Primero comprobar si estamos en el caso base (nivel 0) [ Aquí es donde se van
+	 * a hacer cosas (una vez se tenga una solución) Más o menos como el greedy,
+	 * calcular imagenes, zncc, comparar ] En otro caso, 3 llamadas recursivas (de
+	 * nivel+1) Diferencia entre llamadas: si es caso 0, 1, 2 (imagen) -> pasarlo
+	 * por parámetro o, antes de primera llamada llamada, poner sol[nivel] a 0,
+	 * antes de segunda sol[nivel] = 1, igual con 2
+	 */
+	private void backtrackingRec(int level) {
+		if (level == sol.length - 1) {
+			for (int i = 0; i < sol.length; i++) {
+				if (sol[i] == 1) {
+					this.half1_img.addSignal(dataset[i]);
+				} else if (sol[i] == 2) {
+					this.half2_img.addSignal(dataset[i]);
+				}
+			}
+
+			double new_zncc = zncc();
+
+			if (new_zncc > max_zncc) {
+				max_zncc = new_zncc;
+				this.bestSol = sol;
+			}
+
+			this.half1_img.addSignal(this.half2_img);
+			Imagen aux = half1_img;
+			aux.addSignal(half2_img);
+			this.avg_img = aux;
+
+			this.counter++;
+
+		} else {
+			sol[level] = 0;
+			backtrackingRec(level + 1);
+			sol[level] = 1;
+			backtrackingRec(level + 1);
+			sol[level] = 2;
+			backtrackingRec(level + 1);
+		}
+
 	}
 
 }
