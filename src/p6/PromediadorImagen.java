@@ -154,29 +154,32 @@ public class PromediadorImagen {
 				}
 			}
 
-			double new_zncc = zncc();
+			double new_zncc = img1.zncc(img2);
 
 			if (new_zncc > zncc) {
 				zncc = new_zncc;
 				this.bestSol = sol.clone();
 				this.half1_img = img1.copy();
 				this.half2_img = img2.copy();
+				this.avg_img.addSignal(this.half1_img);
+				this.avg_img.addSignal(this.half2_img);
 			}
 
 			count--;
 			this.counter++;
 		}
 
-//		for (int i = 0; i < bestSol.length; i++) {
-//			if (bestSol[i] == 1) {
-//				this.half1_img.addSignal(dataset[i]);
-//			} else if (bestSol[i] == 2) {
-//				this.half2_img.addSignal(dataset[i]);
-//			}
-//		}
-//
-//		this.avg_img.addSignal(this.half1_img);
-//		this.avg_img.addSignal(this.half2_img);
+		printSol();
+	}
+
+	private void printSol() {
+		for (int i = 0; i < this.bestSol.length; i++) {
+			if (i < this.bestSol.length - 1) {
+				System.out.print(bestSol[i] + " - ");
+			} else {
+				System.out.print(bestSol[i] + "\n");
+			}
+		}
 	}
 
 	/**
@@ -204,6 +207,8 @@ public class PromediadorImagen {
 		this.avg_img = new Imagen(width, height);
 
 		backtrackingRec(0);
+
+		printSol();
 	}
 
 	/*
@@ -215,34 +220,38 @@ public class PromediadorImagen {
 	 * antes de segunda sol[nivel] = 1, igual con 2
 	 */
 	private void backtrackingRec(int level) {
+
 		if (level == sol.length) {
+			Imagen img1 = new Imagen(width, height);
+			Imagen img2 = new Imagen(width, height);
+
+			this.bestSol = sol.clone();
+
 			for (int i = 0; i < sol.length; i++) {
 				if (sol[i] == 1) {
-					this.half1_img.addSignal(dataset[i]);
+					img1.addSignal(dataset[i]);
 				} else if (sol[i] == 2) {
-					this.half2_img.addSignal(dataset[i]);
+					img2.addSignal(dataset[i]);
 				}
 			}
 
-			double new_zncc = zncc();
-
-			if (new_zncc > max_zncc) {
-				max_zncc = new_zncc;
-				this.bestSol = sol;
-			}
-
-			this.avg_img.addSignal(half1_img);
-			this.avg_img.addSignal(half2_img);
-
-			this.counter++;
+			this.half1_img = img1.copy();
+			this.half2_img = img2.copy();
+			this.avg_img.addSignal(this.half1_img);
+			this.avg_img.addSignal(this.half2_img);
+			this.max_zncc = zncc();
 
 		} else {
-			sol[level] = 0;
-			backtrackingRec(level + 1);
-			sol[level] = 1;
-			backtrackingRec(level + 1);
-			sol[level] = 2;
-			backtrackingRec(level + 1);
+
+			for (int i = 2; i >= 0; i--) {
+				if (i > 0) {
+					sol[level] = i;
+					this.counter++;
+					backtrackingRec(level + 1);
+				} else {
+					backtrackingRec(level + 1);
+				}
+			}
 		}
 
 	}
