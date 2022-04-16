@@ -189,7 +189,7 @@ public class PromediadorImagen {
 	 *                   número de imágenes entre los dos subconjuntos
 	 */
 	/*
-	 * El array sol debe tener el mismo numero de 0 que de 1 (+- max_unbalancing) Si
+	 * El array sol debe tener el mismo numero de 1 que de 2 (+- max_unbalancing) Si
 	 * len=6 y hay tres 1 metidos, no permitir meter 1 (solo 2) Crear metodos para
 	 * contar numero de unos o doses
 	 */
@@ -205,27 +205,19 @@ public class PromediadorImagen {
 		this.half1_img = new Imagen(width, height);
 		this.half2_img = new Imagen(width, height);
 		this.avg_img = new Imagen(width, height);
+		this.max_zncc = -1;
 
 		backtrackingRec(0);
 
 		printSol();
 	}
 
-	/*
-	 * Primero comprobar si estamos en el caso base (nivel 0) [ Aquí es donde se van
-	 * a hacer cosas (una vez se tenga una solución) Más o menos como el greedy,
-	 * calcular imagenes, zncc, comparar ] En otro caso, 3 llamadas recursivas (de
-	 * nivel+1) Diferencia entre llamadas: si es caso 0, 1, 2 (imagen) -> pasarlo
-	 * por parámetro o, antes de primera llamada llamada, poner sol[nivel] a 0,
-	 * antes de segunda sol[nivel] = 1, igual con 2
-	 */
 	private void backtrackingRec(int level) {
 
 		if (level == sol.length) {
+
 			Imagen img1 = new Imagen(width, height);
 			Imagen img2 = new Imagen(width, height);
-
-			this.bestSol = sol.clone();
 
 			for (int i = 0; i < sol.length; i++) {
 				if (sol[i] == 1) {
@@ -235,25 +227,40 @@ public class PromediadorImagen {
 				}
 			}
 
-			this.half1_img = img1.copy();
-			this.half2_img = img2.copy();
-			this.avg_img.addSignal(this.half1_img);
-			this.avg_img.addSignal(this.half2_img);
-			this.max_zncc = zncc();
+			double new_zncc = img1.zncc(img2);
+
+			if (new_zncc > max_zncc) {
+				max_zncc = new_zncc;
+				this.bestSol = sol.clone();
+				this.half1_img = img1.copy();
+				this.half2_img = img2.copy();
+				this.avg_img.addSignal(this.half1_img);
+				this.avg_img.addSignal(this.half2_img);
+			}
+
+			this.counter++;
 
 		} else {
 
-			for (int i = 2; i >= 0; i--) {
-				if (i > 0) {
-					sol[level] = i;
-					this.counter++;
-					backtrackingRec(level + 1);
-				} else {
-					backtrackingRec(level + 1);
-				}
+			for (int i = 0; i < 3; i++) {
+				sol[level] = i;
+				backtrackingRec(level + 1);
 			}
 		}
 
+	}
+
+	private double probarSol() {
+		Imagen img1 = new Imagen(width, height);
+		Imagen img2 = new Imagen(width, height);
+		for (int i = 0; i < sol.length; i++) {
+			if (sol[i] == 1) {
+				img1.addSignal(dataset[i]);
+			} else if (sol[i] == 2) {
+				img2.addSignal(dataset[i]);
+			}
+		}
+		return img1.zncc(img2);
 	}
 
 }
