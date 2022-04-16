@@ -194,7 +194,84 @@ public class PromediadorImagen {
 	 * contar numero de unos o doses
 	 */
 	public void splitSubsetsBacktracking(int max_unbalancing) {
-		// TODO
+
+		this.half1_img = new Imagen(width, height);
+		this.half2_img = new Imagen(width, height);
+		this.avg_img = new Imagen(width, height);
+		this.max_zncc = -1;
+
+		backtrackingBalanceoRec(0, max_unbalancing);
+
+		printSol();
+	}
+
+	private void backtrackingBalanceoRec(int level, int max_unbalancing) {
+
+		if (level == sol.length) {
+
+			Imagen img1 = new Imagen(width, height);
+			Imagen img2 = new Imagen(width, height);
+
+			for (int i = 0; i < sol.length; i++) {
+				if (sol[i] == 1) {
+					img1.addSignal(dataset[i]);
+				} else if (sol[i] == 2) {
+					img2.addSignal(dataset[i]);
+				}
+			}
+
+			double new_zncc = img1.zncc(img2);
+
+			if (new_zncc > max_zncc) {
+				max_zncc = new_zncc;
+				this.bestSol = sol.clone();
+				this.half1_img = img1.copy();
+				this.half2_img = img2.copy();
+				this.avg_img.addSignal(this.half1_img);
+				this.avg_img.addSignal(this.half2_img);
+			}
+
+			this.counter++;
+
+		} else {
+
+			boolean breakloop = false;
+			if (Math.abs(contar(1) - contar(2)) > max_unbalancing) {
+				if (contar(1) > contar(2)) {
+					sol[level] = 2;
+				} else if (contar(2) > contar(1)) {
+					sol[level] = 1;
+				}
+				breakloop = true;
+				backtrackingBalanceoRec(level + 1, max_unbalancing);
+			}
+
+			for (int i = 0; i < 3; i++) {
+				if (breakloop) {
+					break;
+				}
+				sol[level] = i;
+				backtrackingBalanceoRec(level + 1, max_unbalancing);
+			}
+		}
+
+	}
+
+	/**
+	 * Devuelve número de valores que hay en el array sol que coinciden con el valor
+	 * introducido
+	 * 
+	 * @param valor
+	 * @return
+	 */
+	private int contar(int valor) {
+		int count = 0;
+		for (int i = 0; i < sol.length; i++) {
+			if (sol[i] == valor) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -248,19 +325,6 @@ public class PromediadorImagen {
 			}
 		}
 
-	}
-
-	private double probarSol() {
-		Imagen img1 = new Imagen(width, height);
-		Imagen img2 = new Imagen(width, height);
-		for (int i = 0; i < sol.length; i++) {
-			if (sol[i] == 1) {
-				img1.addSignal(dataset[i]);
-			} else if (sol[i] == 2) {
-				img2.addSignal(dataset[i]);
-			}
-		}
-		return img1.zncc(img2);
 	}
 
 }
