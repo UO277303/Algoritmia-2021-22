@@ -188,11 +188,6 @@ public class PromediadorImagen {
 	 * @max_unbalancing: (condición de poda) determina la diferencia máxima en el
 	 *                   número de imágenes entre los dos subconjuntos
 	 */
-	/*
-	 * El array sol debe tener el mismo numero de 1 que de 2 (+- max_unbalancing) Si
-	 * len=6 y hay tres 1 metidos, no permitir meter 1 (solo 2) Crear metodos para
-	 * contar numero de unos o doses
-	 */
 	public void splitSubsetsBacktracking(int max_unbalancing) {
 
 		this.half1_img = new Imagen(width, height);
