@@ -17,6 +17,10 @@ public class PromediadorImagen {
 	private int counter; // contador de nodos en el arbol implícito
 	private double max_zncc; // donde almacenar el ZNCC final
 
+	// variables para contar el número de 1 y 2 que se guardan en el vector sol
+	private int numUnos;
+	private int numDoses;
+
 	/**
 	 * Constructor
 	 * 
@@ -169,18 +173,25 @@ public class PromediadorImagen {
 			this.counter++;
 		}
 
-		printSol();
+//		printSol('v');
 	}
 
-	private void printSol() {
-		for (int i = 0; i < this.bestSol.length; i++) {
-			if (i < this.bestSol.length - 1) {
-				System.out.print(bestSol[i] + " - ");
-			} else {
-				System.out.print(bestSol[i] + "\n");
-			}
-		}
-	}
+//	private void printSol(char tipo) {
+//		if (tipo == 'v') {
+//			System.out.print("Voraz: ");
+//		} else if (tipo == 'b') {
+//			System.out.print("Backt: ");
+//		} else {
+//			System.out.print("Balan: ");
+//		}
+//		for (int i = 0; i < this.bestSol.length; i++) {
+//			if (i < this.bestSol.length - 1) {
+//				System.out.print(bestSol[i] + " - ");
+//			} else {
+//				System.out.print(bestSol[i] + "\n");
+//			}
+//		}
+//	}
 
 	/**
 	 * Algoritmo backtracking con condición balanceo
@@ -194,79 +205,63 @@ public class PromediadorImagen {
 		this.half2_img = new Imagen(width, height);
 		this.avg_img = new Imagen(width, height);
 		this.max_zncc = -1;
+		this.counter = 0;
+		this.numUnos = 0;
+		this.numDoses = 0;
 
 		backtrackingBalanceoRec(0, max_unbalancing);
 
-		printSol();
+//		printSol('n');
 	}
 
 	private void backtrackingBalanceoRec(int level, int max_unbalancing) {
 
 		if (level == sol.length) {
 
-			Imagen img1 = new Imagen(width, height);
-			Imagen img2 = new Imagen(width, height);
+			if (Math.abs(numUnos - numDoses) <= max_unbalancing) {
+				Imagen img1 = new Imagen(width, height);
+				Imagen img2 = new Imagen(width, height);
 
-			for (int i = 0; i < sol.length; i++) {
-				if (sol[i] == 1) {
-					img1.addSignal(dataset[i]);
-				} else if (sol[i] == 2) {
-					img2.addSignal(dataset[i]);
+				for (int i = 0; i < sol.length; i++) {
+					if (sol[i] == 1) {
+						img1.addSignal(dataset[i]);
+					} else if (sol[i] == 2) {
+						img2.addSignal(dataset[i]);
+					}
+				}
+
+				double new_zncc = img1.zncc(img2);
+
+				if (new_zncc > max_zncc) {
+					max_zncc = new_zncc;
+					this.bestSol = sol.clone();
+					this.half1_img = img1.copy();
+					this.half2_img = img2.copy();
+					this.avg_img.addSignal(this.half1_img);
+					this.avg_img.addSignal(this.half2_img);
 				}
 			}
-
-			double new_zncc = img1.zncc(img2);
-
-			if (new_zncc > max_zncc) {
-				max_zncc = new_zncc;
-				this.bestSol = sol.clone();
-				this.half1_img = img1.copy();
-				this.half2_img = img2.copy();
-				this.avg_img.addSignal(this.half1_img);
-				this.avg_img.addSignal(this.half2_img);
-			}
-
-			this.counter++;
 
 		} else {
-
-			boolean breakloop = false;
-			if (Math.abs(contar(1) - contar(2)) > max_unbalancing) {
-				if (contar(1) > contar(2)) {
-					sol[level] = 2;
-				} else if (contar(2) > contar(1)) {
-					sol[level] = 1;
+			if (Math.abs(numUnos - numDoses) <= max_unbalancing) {
+				for (int i = 0; i < 3; i++) {
+					this.counter++;
+					if (i == 1) {
+						numUnos++;
+					} else if (i == 2) {
+						numDoses++;
+					}
+					sol[level] = i;
+					backtrackingBalanceoRec(level + 1, max_unbalancing);
+					if (i == 1) {
+						numUnos--;
+					} else if (i == 2) {
+						numDoses--;
+					}
 				}
-				breakloop = true;
-				backtrackingBalanceoRec(level + 1, max_unbalancing);
-			}
-
-			for (int i = 0; i < 3; i++) {
-				if (breakloop) {
-					break;
-				}
-				sol[level] = i;
-				backtrackingBalanceoRec(level + 1, max_unbalancing);
 			}
 		}
 
-	}
-
-	/**
-	 * Devuelve número de valores que hay en el array sol que coinciden con el valor
-	 * introducido
-	 * 
-	 * @param valor
-	 * @return
-	 */
-	private int contar(int valor) {
-		int count = 0;
-		for (int i = 0; i < sol.length; i++) {
-			if (sol[i] == valor) {
-				count++;
-			}
-		}
-		return count;
 	}
 
 	/**
@@ -278,10 +273,11 @@ public class PromediadorImagen {
 		this.half2_img = new Imagen(width, height);
 		this.avg_img = new Imagen(width, height);
 		this.max_zncc = -1;
+		this.counter = 0;
 
 		backtrackingRec(0);
 
-		printSol();
+//		printSol('b');
 	}
 
 	private void backtrackingRec(int level) {
@@ -309,12 +305,9 @@ public class PromediadorImagen {
 				this.avg_img.addSignal(this.half1_img);
 				this.avg_img.addSignal(this.half2_img);
 			}
-
-			this.counter++;
-
 		} else {
-
 			for (int i = 0; i < 3; i++) {
+				this.counter++;
 				sol[level] = i;
 				backtrackingRec(level + 1);
 			}
