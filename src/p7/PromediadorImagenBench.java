@@ -9,7 +9,7 @@ public class PromediadorImagenBench {
 	// Ajustes del banco de pruebas
 	private static String REAL_IMG = Paths.get("").toAbsolutePath().toString() + "/src/p6/einstein_1_256.png";
 	private static String BAD_IMG = Paths.get("").toAbsolutePath().toString() + "/src/p6/einstein_1_256.png";
-	private static String OUT_DIR_G = Paths.get("").toAbsolutePath().toString() + "/src/p6/out_g/";
+//	private static String OUT_DIR_G = Paths.get("").toAbsolutePath().toString() + "/src/p6/out_g/";
 	private static String OUT_DIR_B = Paths.get("").toAbsolutePath().toString() + "/src/p6/out_bt";
 	private static int N_IMGS = 7;
 	private static double PORCENTAJE_BAD = 25; // %
@@ -29,7 +29,7 @@ public class PromediadorImagenBench {
 		img_avger.branchAndBound();
 		System.out.printf("  -ZNCC: %f\n", img_avger.zncc());
 		System.out.printf("  -Contador: %d\n", img_avger.getCounter());
-		img_avger.saveResults(OUT_DIR_G);
+		img_avger.saveResults(OUT_DIR_B);
 
 		// Medidas
 //		System.out.println("n\tt_bt\tt_bt_b\tzncc_voraz\tzncc_bt\tzncc_bt_b");
