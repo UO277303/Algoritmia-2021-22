@@ -13,7 +13,7 @@ public abstract class Node implements Comparable<Node> {
 							// this branch
 	protected UUID parentID; // Parent ID for node tracking
 	protected UUID ID; // ID for the node
-	protected int heuristicValue; // Value of the calculated heuristic
+	protected double heuristicValue; // Value of the calculated heuristic
 
 	/**
 	 * Constructor for Node objects
@@ -38,7 +38,7 @@ public abstract class Node implements Comparable<Node> {
 	 * 
 	 * @return The heuristicValue variable
 	 */
-	public int getHeuristicValue() {
+	public double getHeuristicValue() {
 		return heuristicValue;
 	}
 
@@ -83,8 +83,8 @@ public abstract class Node implements Comparable<Node> {
 
 	@Override
 	public int compareTo(Node node) { // BRANCHING METHOD
-		int totalValue = heuristicValue;
-		int totalValueToBeCompared = node.getHeuristicValue();
+		double totalValue = heuristicValue;
+		double totalValueToBeCompared = node.getHeuristicValue();
 
 		if (totalValue > totalValueToBeCompared)
 			return 1; // this has less priority (is bigger)

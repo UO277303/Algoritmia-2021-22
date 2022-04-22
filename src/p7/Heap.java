@@ -60,7 +60,7 @@ public class Heap {
 	 * 
 	 * @return Value of the heuristic of the best node in the queue
 	 */
-	public int estimateBest() {
+	public double estimateBest() {
 		return nodes.peek().getHeuristicValue();
 	}
 
