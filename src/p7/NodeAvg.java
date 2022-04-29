@@ -62,4 +62,8 @@ public class NodeAvg extends Node {
 		return false;
 	}
 
+	public ArrayList<Integer> getSol() {
+		return sol;
+	}
+
 }

@@ -316,7 +316,26 @@ public class PromediadorImagen extends BranchAndBound {
 	}
 
 	public void branchAndBound() {
-		branchAndBound(new NodeAvg(dataset, 0, new ArrayList<Integer>()));
+		NodeAvg node_avger = new NodeAvg(dataset, 0, new ArrayList<Integer>());
+		branchAndBound(node_avger);
+
+		ArrayList<Integer> solAux = node_avger.getSol();
+		for (int i = 0; i < solAux.size(); i++) {
+			sol[i] = solAux.get(i);
+		}
+
+		half1_img = new Imagen(width, height);
+		half2_img = new Imagen(width, height);
+		for (int i = 0; i < sol.length; i++) {
+			if (sol[i] == 1) {
+				half1_img.addSignal(dataset[i]);
+			} else if (sol[i] == 2) {
+				half2_img.addSignal(dataset[i]);
+			}
+		}
+		avg_img = new Imagen(width, height);
+		avg_img.addSignal(half1_img);
+		avg_img.addSignal(half2_img);
 	}
 
 }
