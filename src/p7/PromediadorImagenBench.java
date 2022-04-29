@@ -26,41 +26,40 @@ public class PromediadorImagenBench {
 		n_real = N_IMGS - n_bad;
 		img_avger = new PromediadorImagen(REAL_IMG, BAD_IMG, n_real, n_bad, S_NOISE);
 
-		System.out.print("TESTING BACKTRACKING SIN BALANCEO:\n");
-		img_avger.splitSubsetsBacktracking();
-		System.out.printf("  -ZNCC: %f\n", img_avger.zncc());
-		System.out.printf("  -Contador: %d\n", img_avger.getCounter());
-		img_avger.saveResults(OUT_DIR_B);
-
-		System.out.print("TESTING BRANCH AND BOUND:\n");
-		img_avger.branchAndBound();
-		System.out.printf("  -ZNCC: %f\n", img_avger.zncc());
-		System.out.printf("  -Contador: %d\n", img_avger.getCounter());
-		img_avger.saveResults(OUT_DIR_BNB);
+//		System.out.print("TESTING BACKTRACKING SIN BALANCEO:\n");
+//		img_avger.splitSubsetsBacktracking();
+//		System.out.printf("  -ZNCC: %f\n", img_avger.zncc());
+//		System.out.printf("  -Contador: %d\n", img_avger.getCounter());
+//		img_avger.saveResults(OUT_DIR_B);
+//
+//		System.out.print("TESTING BRANCH AND BOUND:\n");
+//		img_avger.branchAndBound();
+//		System.out.printf("  -ZNCC: %f\n", img_avger.zncc());
+//		System.out.printf("  -Contador: %d\n", img_avger.getCounter());
+//		img_avger.saveResults(OUT_DIR_BNB);
 
 		// Medidas
-//		System.out.println("n\tt_bt\tt_bt_b\tzncc_voraz\tzncc_bt\tzncc_bt_b");
-//		for (int i = 2; i < 20; i++) {
-//			n_bad = (int) ((PORCENTAJE_BAD / 100.) * i);
-//			n_real = i - n_bad;
-//			img_avger = new PromediadorImagen(REAL_IMG, BAD_IMG, n_real, n_bad, S_NOISE);
-//
-//			img_avger.splitSubsetsGreedy(i);
-//			double zncc_voraz = img_avger.zncc();
-//
-//			long t1 = System.currentTimeMillis();
-//			img_avger.splitSubsetsBacktracking();
-//			double zncc_bt = img_avger.zncc();
-//			long t_bt = System.currentTimeMillis() - t1;
-//
-//			t1 = System.currentTimeMillis();
-//			img_avger.splitSubsetsBacktracking(1);
-//			double zncc_bt_bal = img_avger.zncc();
-//			long t_bt_bal = System.currentTimeMillis() - t1;
-//
-//			System.out.println(i + "\t" + t_bt + "\t" + t_bt_bal + "\t" + round(zncc_voraz, 4) + "\t"
-//					+ round(zncc_bt, 4) + "\t" + round(zncc_bt_bal, 4) + "\n");
-//		}
+		System.out.println("n\tt_bt\tt_bnb\tnodes_bt\tnodes_bnb\tzncc_bt\tzncc_bnb");
+		for (int i = 2; i < 20; i++) {
+			n_bad = (int) ((PORCENTAJE_BAD / 100.) * i);
+			n_real = i - n_bad;
+			img_avger = new PromediadorImagen(REAL_IMG, BAD_IMG, n_real, n_bad, S_NOISE);
+
+			long t1 = System.currentTimeMillis();
+			img_avger.splitSubsetsBacktracking();
+			double zncc_bt = img_avger.zncc();
+			int counter_bt = img_avger.getCounter();
+			long t_bt = System.currentTimeMillis() - t1;
+
+			t1 = System.currentTimeMillis();
+			img_avger.branchAndBound();
+			double zncc_btnb = img_avger.zncc();
+			int counter_bnb = img_avger.getCounter();
+			long t_bnb = System.currentTimeMillis() - t1;
+
+			System.out.println(i + "\t" + t_bt + "\t" + t_bnb + "\t" + counter_bt + "\t" + counter_bnb + "\t"
+					+ round(zncc_bt, 4) + "\t" + round(zncc_btnb, 4));
+		}
 	}
 
 	public static double round(double valor, int nDec) {

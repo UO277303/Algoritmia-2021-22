@@ -13,7 +13,7 @@ public abstract class BranchAndBound {
 	protected double pruneLimit; // To prune nodes above this value
 	protected int nodosProcesados = 0;
 	protected int nodosGenerados = 0;
-	protected int nodosPodados = 0;
+	protected int nodosPodados;
 
 	/**
 	 * Constructor for BrancAndBount objects
@@ -45,8 +45,6 @@ public abstract class BranchAndBound {
 					if (cost < pruneLimit) {
 						pruneLimit = cost;
 						bestNode = child;
-					} else {
-						nodosPodados++;
 					}
 				} else if (child.getHeuristicValue() < pruneLimit) {
 					ds.insert(child);
