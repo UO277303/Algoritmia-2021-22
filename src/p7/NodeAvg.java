@@ -12,6 +12,8 @@ public class NodeAvg extends Node {
 		this.depth = depth;
 		this.dataset = imagenes;
 		this.sol = new ArrayList<Integer>(sol);
+
+		calculateHeuristicValue();
 	}
 
 	/**
@@ -42,15 +44,13 @@ public class NodeAvg extends Node {
 	@Override
 	public ArrayList<Node> expand() {
 		ArrayList<Node> nodosHijos = new ArrayList<Node>();
-		sol.add(0);
-		nodosHijos.add(new NodeAvg(dataset, depth + 1, sol));
-		sol.remove(sol.size() - 1);
-		sol.add(1);
-		nodosHijos.add(new NodeAvg(dataset, depth + 1, sol));
-		sol.remove(sol.size() - 1);
-		sol.add(2);
-		nodosHijos.add(new NodeAvg(dataset, depth + 1, sol));
-		sol.remove(sol.size() - 1);
+
+		for (int i = 0; i < 3; i++) {
+			sol.add(i);
+			nodosHijos.add(new NodeAvg(dataset, depth + 1, sol));
+			sol.remove(sol.size() - 1);
+		}
+
 		return nodosHijos;
 	}
 

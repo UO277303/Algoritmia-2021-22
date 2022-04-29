@@ -99,4 +99,5 @@ public abstract class Node implements Comparable<Node> {
 	public abstract ArrayList<Node> expand();
 
 	public abstract boolean isSolution();
+
 }

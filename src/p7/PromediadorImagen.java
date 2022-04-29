@@ -316,26 +316,26 @@ public class PromediadorImagen extends BranchAndBound {
 	}
 
 	public void branchAndBound() {
-		NodeAvg node_avger = new NodeAvg(dataset, 0, new ArrayList<Integer>());
-		branchAndBound(node_avger);
+		branchAndBound(new NodeAvg(dataset, 0, new ArrayList<Integer>()));
 
-		ArrayList<Integer> solAux = node_avger.getSol();
-		for (int i = 0; i < solAux.size(); i++) {
+		ArrayList<Integer> solAux = ((NodeAvg) bestNode).getSol();
+		for (int i = 0; i < dataset.length; i++) {
 			sol[i] = solAux.get(i);
 		}
 
-		half1_img = new Imagen(width, height);
-		half2_img = new Imagen(width, height);
+		this.half1_img = new Imagen(width, height);
+		this.half2_img = new Imagen(width, height);
 		for (int i = 0; i < sol.length; i++) {
 			if (sol[i] == 1) {
-				half1_img.addSignal(dataset[i]);
+				this.half1_img.addSignal(dataset[i]);
 			} else if (sol[i] == 2) {
-				half2_img.addSignal(dataset[i]);
+				this.half2_img.addSignal(dataset[i]);
 			}
 		}
-		avg_img = new Imagen(width, height);
-		avg_img.addSignal(half1_img);
-		avg_img.addSignal(half2_img);
+		this.avg_img = new Imagen(width, height);
+		this.avg_img.addSignal(this.half1_img);
+		this.avg_img.addSignal(this.half2_img);
+		this.counter = nodosGenerados;
 	}
 
 }
