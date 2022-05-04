@@ -13,7 +13,7 @@ public abstract class BranchAndBound {
 	protected double pruneLimit; // To prune nodes above this value
 	protected int nodosProcesados = 0;
 	protected int nodosGenerados = 0;
-	protected int nodosPodados;
+	protected int nodosPodados = 0;
 
 	/**
 	 * Constructor for BrancAndBount objects

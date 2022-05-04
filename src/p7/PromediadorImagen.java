@@ -176,23 +176,6 @@ public class PromediadorImagen extends BranchAndBound {
 //		printSol('v');
 	}
 
-//	private void printSol(char tipo) {
-//		if (tipo == 'v') {
-//			System.out.print("Voraz: ");
-//		} else if (tipo == 'b') {
-//			System.out.print("Backt: ");
-//		} else {
-//			System.out.print("Balan: ");
-//		}
-//		for (int i = 0; i < this.bestSol.length; i++) {
-//			if (i < this.bestSol.length - 1) {
-//				System.out.print(bestSol[i] + " - ");
-//			} else {
-//				System.out.print(bestSol[i] + "\n");
-//			}
-//		}
-//	}
-
 	/**
 	 * Algoritmo backtracking con condición balanceo
 	 * 
@@ -332,10 +315,32 @@ public class PromediadorImagen extends BranchAndBound {
 				this.half2_img.addSignal(dataset[i]);
 			}
 		}
+		this.bestSol = sol.clone();
 		this.avg_img = new Imagen(width, height);
 		this.avg_img.addSignal(this.half1_img);
 		this.avg_img.addSignal(this.half2_img);
 		this.counter = nodosGenerados;
+
+//		printSol('a');
+	}
+
+	private void printSol(char tipo) {
+		if (tipo == 'v') {
+			System.out.print("Voraz: ");
+		} else if (tipo == 'b') {
+			System.out.print("Backt: ");
+		} else if (tipo == 'a') {
+			System.out.print("Br&Bo: ");
+		} else {
+			System.out.print("Balan: ");
+		}
+		for (int i = 0; i < this.bestSol.length; i++) {
+			if (i < this.bestSol.length - 1) {
+				System.out.print(bestSol[i] + " - ");
+			} else {
+				System.out.print(bestSol[i] + "\n");
+			}
+		}
 	}
 
 }
