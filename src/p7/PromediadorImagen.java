@@ -324,23 +324,23 @@ public class PromediadorImagen extends BranchAndBound {
 //		printSol('a');
 	}
 
-	private void printSol(char tipo) {
-		if (tipo == 'v') {
-			System.out.print("Voraz: ");
-		} else if (tipo == 'b') {
-			System.out.print("Backt: ");
-		} else if (tipo == 'a') {
-			System.out.print("Br&Bo: ");
-		} else {
-			System.out.print("Balan: ");
-		}
-		for (int i = 0; i < this.bestSol.length; i++) {
-			if (i < this.bestSol.length - 1) {
-				System.out.print(bestSol[i] + " - ");
-			} else {
-				System.out.print(bestSol[i] + "\n");
-			}
-		}
-	}
+//	private void printSol(char tipo) {
+//		if (tipo == 'v') {
+//			System.out.print("Voraz: ");
+//		} else if (tipo == 'b') {
+//			System.out.print("Backt: ");
+//		} else if (tipo == 'a') {
+//			System.out.print("Br&Bo: ");
+//		} else {
+//			System.out.print("Balan: ");
+//		}
+//		for (int i = 0; i < this.bestSol.length; i++) {
+//			if (i < this.bestSol.length - 1) {
+//				System.out.print(bestSol[i] + " - ");
+//			} else {
+//				System.out.print(bestSol[i] + "\n");
+//			}
+//		}
+//	}
 
 }
