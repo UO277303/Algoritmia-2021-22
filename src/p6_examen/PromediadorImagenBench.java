@@ -9,8 +9,8 @@ public class PromediadorImagenBench {
 	// Ajustes del banco de pruebas
 	private static String REAL_IMG = Paths.get("").toAbsolutePath().toString() + "/src/p6_examen/einstein_1_256.png";
 	private static String BAD_IMG = Paths.get("").toAbsolutePath().toString() + "/src/p6_examen/einstein_1_256.png";
-	private static String OUT_DIR_G = Paths.get("").toAbsolutePath().toString() + "/src/p6_examen/out_g/";
-	private static String OUT_DIR_B = Paths.get("").toAbsolutePath().toString() + "/src/p6_examen/out_bt";
+//	private static String OUT_DIR_G = Paths.get("").toAbsolutePath().toString() + "/src/p6_examen/out_g/";
+//	private static String OUT_DIR_B = Paths.get("").toAbsolutePath().toString() + "/src/p6_examen/out_bt";
 	private static int N_IMGS = 6;
 	private static double PORCENTAJE_BAD = 25; // %
 	private static double S_NOISE = 5.0; // Nivel de ruido - desvición estándar de una distrubución Gaussiana
