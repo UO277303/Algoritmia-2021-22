@@ -134,23 +134,23 @@ public class PromediadorImagen {
 		int count = n_tries;
 		double zncc = -1;
 
-		this.half1_img = new Imagen(width, height);
+		this.half1_img = new Imagen(width, height); // Inicializo las imágenes resultado
 		this.half2_img = new Imagen(width, height);
 		this.avg_img = new Imagen(width, height);
 
 		while (count > 0) {
 
-			Imagen img1 = new Imagen(width, height);
+			Imagen img1 = new Imagen(width, height); // Creo dos imágenes auxiliares
 			Imagen img2 = new Imagen(width, height);
 
 			int[] v = new int[dataset.length];
-			for (int i = 0; i < v.length; i++) {
+			for (int i = 0; i < v.length; i++) { // Relleno aleatoriamente el vector solución
 				v[i] = (int) (Math.random() * 3);
 			}
 
 			this.sol = v;
 
-			for (int i = 0; i < v.length; i++) {
+			for (int i = 0; i < v.length; i++) { // Fusiono las imágenes de cada grupo
 				if (v[i] == 1) {
 					img1.addSignal(dataset[i]);
 				} else if (v[i] == 2) {
@@ -158,14 +158,14 @@ public class PromediadorImagen {
 				}
 			}
 
-			double new_zncc = img1.zncc(img2);
+			double new_zncc = img1.zncc(img2); // Calculo el zncc de las imágenes auxiliares
 
-			if (new_zncc > zncc) {
+			if (new_zncc > zncc) { // Si es mayor:
 				zncc = new_zncc;
 				this.bestSol = sol.clone();
-				this.half1_img = img1.copy();
+				this.half1_img = img1.copy(); // Copio las imágenes a las resultado
 				this.half2_img = img2.copy();
-				this.avg_img.addSignal(this.half1_img);
+				this.avg_img.addSignal(this.half1_img); // Las fusiono en la imágen final
 				this.avg_img.addSignal(this.half2_img);
 			}
 
@@ -175,23 +175,6 @@ public class PromediadorImagen {
 
 //		printSol('v');
 	}
-
-//	private void printSol(char tipo) {
-//		if (tipo == 'v') {
-//			System.out.print("Voraz: ");
-//		} else if (tipo == 'b') {
-//			System.out.print("Backt: ");
-//		} else {
-//			System.out.print("Balan: ");
-//		}
-//		for (int i = 0; i < this.bestSol.length; i++) {
-//			if (i < this.bestSol.length - 1) {
-//				System.out.print(bestSol[i] + " - ");
-//			} else {
-//				System.out.print(bestSol[i] + "\n");
-//			}
-//		}
-//	}
 
 	/**
 	 * Algoritmo backtracking con condición balanceo
@@ -216,9 +199,9 @@ public class PromediadorImagen {
 
 	private void backtrackingBalanceoRec(int level, int max_unbalancing) {
 
-		if (level == sol.length) {
+		if (level == sol.length) { // Caso base
 
-			if (Math.abs(numUnos - numDoses) <= max_unbalancing) {
+			if (Math.abs(numUnos - numDoses) <= max_unbalancing) { // Compruebo que haya +- el mismo nº de 1 y 2
 				Imagen img1 = new Imagen(width, height);
 				Imagen img2 = new Imagen(width, height);
 
@@ -246,14 +229,14 @@ public class PromediadorImagen {
 			if (Math.abs(numUnos - numDoses) <= max_unbalancing) {
 				for (int i = 0; i < 3; i++) {
 					this.counter++;
-					if (i == 1) {
+					if (i == 1) { // Aumento el contados de unos o doses según corresponda
 						numUnos++;
 					} else if (i == 2) {
 						numDoses++;
 					}
 					sol[level] = i;
 					backtrackingBalanceoRec(level + 1, max_unbalancing);
-					if (i == 1) {
+					if (i == 1) { // Lo pongo al valor anterior
 						numUnos--;
 					} else if (i == 2) {
 						numDoses--;
@@ -282,7 +265,7 @@ public class PromediadorImagen {
 
 	private void backtrackingRec(int level) {
 
-		if (level == sol.length) {
+		if (level == sol.length) { // Caso base
 
 			Imagen img1 = new Imagen(width, height);
 			Imagen img2 = new Imagen(width, height);
@@ -314,5 +297,22 @@ public class PromediadorImagen {
 		}
 
 	}
+
+//	private void printSol(char tipo) {
+//		if (tipo == 'v') {
+//			System.out.print("Voraz: ");
+//		} else if (tipo == 'b') {
+//			System.out.print("Backt: ");
+//		} else {
+//			System.out.print("Balan: ");
+//		}
+//		for (int i = 0; i < this.bestSol.length; i++) {
+//			if (i < this.bestSol.length - 1) {
+//				System.out.print(bestSol[i] + " - ");
+//			} else {
+//				System.out.print(bestSol[i] + "\n");
+//			}
+//		}
+//	}
 
 }

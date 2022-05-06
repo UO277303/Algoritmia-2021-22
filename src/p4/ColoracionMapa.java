@@ -11,6 +11,12 @@ public class ColoracionMapa {
 	private ArrayList<String> listaColores;
 	private ArrayList<String> coloresUsados;
 
+	/**
+	 * Inicializa los atributos
+	 * 
+	 * @param ficheroPaises  Fichero que contiene los países
+	 * @param ficheroColores Fichero que contiene los colores
+	 */
 	public ColoracionMapa(String ficheroPaises, String ficheroColores) {
 		paises = LeerFicheros.readPaises(ficheroPaises);
 		listaColores = LeerFicheros.readColores(ficheroColores);
@@ -18,6 +24,12 @@ public class ColoracionMapa {
 		coloresUsados = new ArrayList<String>();
 	}
 
+	/**
+	 * Método que realiza la coloración de los países.
+	 * 
+	 * Da un color al primer país de la lista, y por cada uno de los países
+	 * restantes, añade el color que corresponda
+	 */
 	public void coloracionMapa() {
 		String[] paisesNombres = paises.keySet().toArray(new String[paises.size()]);
 
@@ -27,6 +39,12 @@ public class ColoracionMapa {
 		}
 	}
 
+	/**
+	 * Colorea un país con el color que se pasa por parámetro
+	 * 
+	 * @param pais  País a colorear
+	 * @param color Color del país
+	 */
 	private void añadirColor(String pais, String color) {
 		colores.put(pais, color);
 		if (!coloresUsados.contains(color)) {
@@ -34,6 +52,12 @@ public class ColoracionMapa {
 		}
 	}
 
+	/**
+	 * Devuelve el primer color posible para un país dado, según sus fronteras
+	 * 
+	 * @param pais País a colorear
+	 * @return Primer color posible para el país
+	 */
 	private String getColorPosible(String pais) {
 		ArrayList<String> coloresFronteras = new ArrayList<String>();
 		for (int i = 0; i < paises.get(pais).size(); i++) {

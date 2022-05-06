@@ -5,6 +5,13 @@ public class Tromino {
 	int[][] tablero;
 	int count = 0;
 
+	/**
+	 * Crea el tablero y empieza a resolver el trominó
+	 * 
+	 * @param n      Tamaño del tablero
+	 * @param xVacio Posición x de la casilla vacía
+	 * @param yVacio Posición y de la casilla vacía
+	 */
 	public void crearTablero(int n, int xVacio, int yVacio) {
 		if (n > 0 && potenciaDe2(n) && xVacio < n && yVacio < n) {
 			tablero = new int[n][n];
@@ -15,10 +22,28 @@ public class Tromino {
 		}
 	}
 
+	/**
+	 * Comprueba si el número pasado por parámetro es potencia de dos
+	 * 
+	 * @param x Número a comprobar
+	 * @return true si x es potencia de 2
+	 */
 	private boolean potenciaDe2(int x) {
 		return Math.log(x) / Math.log(2) % 1 == 0;
 	}
 
+	/**
+	 * Método recursivo para resolver el trominó - Si no es el caso base,
+	 * dependiendo del cuadrante coloca la pieza en el lugar correspondiente, y hace
+	 * 4 llamadas recursivas (una por cada cuadrante) - Si es el caso base, coloca
+	 * la pieza en el resto de casillas
+	 * 
+	 * @param x      Posición x de la casilla ya ocupada
+	 * @param y      Posición y de la casilla ya ocupada
+	 * @param n      Tamaño del subtablero
+	 * @param orig_x Posición x del tablero donde empieza el subtablero
+	 * @param orig_y Posición y del tablero donde empieza el subtablero
+	 */
 	public void tromino(int x, int y, int n, int orig_x, int orig_y) {
 		int cuadrante = buscarCuadrante(orig_x + n / 2 - 1, orig_y + n / 2 - 1, x, y);
 
@@ -95,6 +120,16 @@ public class Tromino {
 		}
 	}
 
+	/**
+	 * Devuelve el cuadrante en el que se encuentra la casilla cuyas posiciones se
+	 * pasan por parámetro
+	 * 
+	 * @param x    Posición x del centro del tablero
+	 * @param y    Posición y del centro del tablero
+	 * @param posX Posición x del punto a comprobar
+	 * @param posY Posición y del punto a comprobar
+	 * @return El número de cuadrante correspondiente
+	 */
 	private int buscarCuadrante(int x, int y, int posX, int posY) {
 		if (posX <= x && posY <= y) {
 			return 1;

@@ -7,6 +7,12 @@ public class DistanciaLevenshtein {
 
 	private int[][] matriz;
 
+	/**
+	 * Guarda el valor de las cadenas y crea la matriz
+	 * 
+	 * @param cad1
+	 * @param cad2
+	 */
 	public DistanciaLevenshtein(String cad1, String cad2) {
 		this.cad1 = cad1.toCharArray();
 		this.cad2 = cad2.toCharArray();
@@ -14,6 +20,11 @@ public class DistanciaLevenshtein {
 		inicializarMatriz();
 	}
 
+	/**
+	 * Calcula la distancia de Levenshtein
+	 * 
+	 * @return
+	 */
 	public int calcularDistancia() {
 		for (int i = 1; i < matriz.length; i++) {
 			for (int j = 1; j < matriz[0].length; j++) {
@@ -27,6 +38,14 @@ public class DistanciaLevenshtein {
 		return matriz[cad1.length][cad2.length];
 	}
 
+	/**
+	 * Devuelve el mínimo de tres números
+	 * 
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @return
+	 */
 	private int min(int a, int b, int c) {
 		int min = a;
 		if (b < min) {
@@ -50,6 +69,9 @@ public class DistanciaLevenshtein {
 		System.out.println("Distancia de Levenshtein = " + matriz[cad1.length][cad2.length]);
 	}
 
+	/**
+	 * Rellena la primera fila y la primera columna de la matriz
+	 */
 	private void inicializarMatriz() {
 		for (int i = 0; i < matriz.length; i++) {
 			matriz[i][0] = i;
